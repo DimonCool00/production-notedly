@@ -8,17 +8,17 @@ import {
 } from '@apollo/client';
 import { setContext } from 'apollo-link-context';
 
-// import global styles
+
 import GlobalStyle from '/components/GlobalStyle';
-// import our routes
+
 import Pages from '/pages';
 
-// configure our API URI & cache
+
 const uri = process.env.API_URI;
 const httpLink = createHttpLink({ uri });
 const cache = new InMemoryCache();
 
-// return the headers to the context
+
 const authLink = setContext((_, { headers }) => {
   return {
     headers: {
@@ -28,7 +28,6 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-// create the Apollo client
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache,
